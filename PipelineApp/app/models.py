@@ -1,8 +1,19 @@
 from app import db 
 
+class pipelines(db.Model): 
+	id = db.Column(db.String(), primary_key=True)
+	name = db.Column(db.String())
+	created_at = db.Column(db.DateTime)
+	updated_at = db.Column(db.DateTime)
+	provider = db.Column(db.String())
+	code = db.Column(db.String())
+
+	def __repr__(self):
+		return '<pipelines {}>'.format(self.name)
+
 class pipeline_location(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	pipeline_id = db.Column(db.Integer)
+	pipeline_id = db.Column(db.String(), db.ForeignKey("pipelines.id"))
 	loc_id = db.Column(db.String())
 	name = db.Column(db.String())
 	state = db.Column(db.String())
@@ -15,5 +26,17 @@ class pipeline_location(db.Model):
 	has_missing_details = db.Column(db.Boolean)
 
 	def __repr__(self):
-		return '<pipeline_location {}>'.format(self.username)
+		return '<pipeline_location {}>'.format(self.name)
 
+class flow_readings(db.Model): 
+	id = db.Column(db.Integer, primary_key=True)
+	pipeline_location_id = db.Column(db.Integer, db.ForeignKey("pipeline_location.id"))
+	flow_date = db.Column(db.Date)
+	oc = db.Column(db.Integer)
+	tsq = db.Column(db.Integer)
+	flow_dir = db.Column(db.Integer)
+	created_at = db.Column(db.DateTime)
+	updated_at = db.Column(db.DateTime)
+
+	def __repr__(self):
+		return '<flow_readings {}>'.format(self.id)
