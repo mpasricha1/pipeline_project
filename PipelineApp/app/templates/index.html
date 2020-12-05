@@ -1,52 +1,94 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container-flud">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<img src="https://via.placeholder.com/1500x600" alt="placeholder image for graph">
+			<img src="https://via.placeholder.com/1450x500" alt="placeholder image for graph" id="graph">
 		</div>
 	</div>
-	<form method="POST">
-		<div class="form-row">
-			<div class="col-md-3">
-				<div class="form-group">
-					<label for="input1">Label 1</label>
-					<select class="form-control" id="input1">
-						<option>Placeholder1</option>
-						<option>Placeholder1</option>
-					</select>
+	<div class="row">
+		<form method="POST">
+			<div class="form-row">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="input1">Label 1</label>
+						<select class="form-control" id="input1">
+							<option>Placeholder1</option>
+							<option>Placeholder1</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="input2">Label 2</label>
+						<select class="form-control" id="input2">
+							<option>Placeholder1</option>
+							<option>Placeholder1</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="input2">Label 3</label>
+						<select class="form-control" id="input3">
+							<option>Placeholder1</option>
+							<option>Placeholder1</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="input2">Label 4</label>
+						<select class="form-control" id="input4">
+							<option>Placeholder1</option>
+							<option>Placeholder1</option>
+						</select>
+					</div>
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					<label for="input2">Label 2</label>
-					<select class="form-control" id="input2">
-						<option>Placeholder1</option>
-						<option>Placeholder1</option>
-					</select>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					<label for="input2">Label 3</label>
-					<select class="form-control" id="input3">
-						<option>Placeholder1</option>
-						<option>Placeholder1</option>
-					</select>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					<label for="input2">Label 4</label>
-					<select class="form-control" id="input4">
-						<option>Placeholder1</option>
-						<option>Placeholder1</option>
-					</select>
-				</div>
-			</div>
+		</form>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table table-striped"> 
+				<thead> 
+					<tr> 
+						<th scope="col">Field 1</th>
+						<th scope="col">Feild 2</th>
+						<th scope="col">Field 3</th>
+						<th scope="col">Field 4</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Data 1</td>
+						<td>Data 2</td>
+						<td>Data 3</td>
+						<td>Data 4</td>
+					</tr>
+					<tr>
+						<td>Data 1</td>
+						<td>Data 2</td>
+						<td>Data 3</td>
+						<td>Data 4</td>
+					</tr>
+					<tr>
+						<td>Data 1</td>
+						<td>Data 2</td>
+						<td>Data 3</td>
+						<td>Data 4</td>
+					</tr>
+					<tr>
+						<td>Data 1</td>
+						<td>Data 2</td>
+						<td>Data 3</td>
+						<td>Data 4</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-	</form>
+	</div>
 </div>
 
 {% endblock %} 
