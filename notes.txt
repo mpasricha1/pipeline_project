@@ -1,0 +1,32 @@
+Yellow- Def need 
+
+darker yellow - conditional on if loc is in database already 
+
+blue - example of bi directional 
+
+green - the is delivery or receipt 
+	delivery negitve 
+	rec - postive
+grey - size of the gate 
+
+timely - first file to grab 
+
+flow for a scrape 
+
+for 12-12 
+
+
+first scrap at 6pm on 12-11
+second scrape at 5am on 12-12
+third scrape at 12 on 12-12
+fourth scrape 4 pm on 12-12 
+fifth scrape 5 am on 12-13 
+final scrape 11 am 12-13
+
+
+
+
+
+
+
+
