@@ -10,8 +10,11 @@ from app import app
 @app.route('/index')
 def index():
 	extract = extractor()
-	db = db_util()
-	data = extract.pull_data()
-	db.insert_new_location(data)
+	# db = db_util()
+	# data = extract.pull_data()
+	# db.insert_new_location(data)
+
+	extract.scraper()
+
 	
 	return render_template("index.html")

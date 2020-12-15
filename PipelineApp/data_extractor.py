@@ -1,3 +1,5 @@
+from splinter import Browser
+from bs4 import BeautifulSoup as bs
 import pandas as pd
 import requests
 import io
@@ -20,6 +22,18 @@ class extractor:
 
 		return df
 
+	def scraper(self): 
+		executable_path = {'executable_path': 'chromedriver.exe'}
+		browser = Browser('chrome', **executable_path, headless=False)
 
-	def test_for_git():
-		return
+		url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=ET&Type=OA"
+
+		browser.visit(url)
+
+		html = browser.html
+		soup = bs(html,"html.parser")
+
+		browser.links.find_by_text("Downloadable Format")
+		
+
+		browser.quit()

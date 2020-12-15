@@ -13,7 +13,7 @@ class db_util:
 			db.session.add(pl)
 			db.session.commit()
 
-			pl_id = pipeline_location.query.order_by(pipeline_location.id.desc()).first()
-			fr = flow_readings(pipeline_location_id=pl_id, flow_date=datetime.now(), oc=)
-			print(pl_id.id)
+			# pl_id = pipeline_location.query.order_by(pipeline_location.id.desc()).first()
+			# fr = flow_readings(pipeline_location_id=pl_id, flow_date=datetime.now(), oc=)
+			# print(pl_id.id)
 
