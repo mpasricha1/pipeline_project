@@ -33,6 +33,7 @@ class extractor:
 		time.sleep(10)
 		print(date_field.get_attribute("value"))
 
+		browser.refresh()
 		drop_down = browser.find_element_by_id("ddlSelector")
 		print(drop_down.get_attribute("value"))
 
