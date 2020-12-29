@@ -13,7 +13,16 @@ class db_util:
 			db.session.add(pl)
 			db.session.commit()
 
-			# pl_id = pipeline_location.query.order_by(pipeline_location.id.desc()).first()
-			# fr = flow_readings(pipeline_location_id=pl_id, flow_date=datetime.now(), oc=)
-			# print(pl_id.id)
 
+	def insert_new_flow_data(self,df):
+		for index, row in df.iterrows():
+			try:
+				pipe_loc = pipeline_location.query.filter_by(loc_id = str(row["Loc"])).first()
+				fr = flow_readings(pipeline_location_id=pipe_loc.id, loc_id=row["Loc"], flow_date=row["Eff_Gas_Day"], 
+									oc=int(row["Operating_Capacity"].replace(",","")), tsq=int(row["Total_Scheduled_Quantity"].replace(",","")), 
+									flow_dir=row["Flow_Ind_Desc"], created_at=datetime.now(), updated_at=datetime.now())
+				db.session.add(fr)
+				db.session.commit()
+			except:
+				print("Loc Not Found")
+		

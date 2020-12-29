@@ -31,10 +31,11 @@ class pipeline_location(db.Model):
 class flow_readings(db.Model): 
 	id = db.Column(db.Integer, primary_key=True)
 	pipeline_location_id = db.Column(db.Integer, db.ForeignKey("pipeline_location.id"))
+	loc_id = db.Column(db.String())
 	flow_date = db.Column(db.Date)
-	oc = db.Column(db.Integer)
+	oc = db.Column(db.String())
 	tsq = db.Column(db.Integer)
-	flow_dir = db.Column(db.Integer)
+	flow_dir = db.Column(db.String())
 	created_at = db.Column(db.DateTime)
 	updated_at = db.Column(db.DateTime)
 
