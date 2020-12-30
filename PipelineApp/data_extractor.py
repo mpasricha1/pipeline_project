@@ -7,10 +7,31 @@ import io
 import time
 
 class extractor:
-	def __init__(self):
-		self.data = ""
+	def pull_loc_data(self):
+		# # Algonquin
+		# url = "https://linkwc.spectraenergy.com/Pointdata/EtAllPoints.csv"
+		# # ETENN
+		# url = "https://linkwc.spectraenergy.com/Pointdata/AgtAllPoints.csv"
+		# # Maritime
+		# url = "https://linkwc.spectraenergy.com/Pointdata/MnusAllPoints.csv"
+		# # Nexus
+		# url = "https://linkwc.spectraenergy.com/Pointdata/NXUSAllPoints.csv"
+		# # Ozark
+		# url = "https://linkwc.spectraenergy.com/Pointdata/OgtAllPoints.csv"
+		# # SESH
+		# url = "https://linkwc.spectraenergy.com/Pointdata/SeshAllPoints.csv"
+		# # Sabal
+		# url = "https://linkwc.spectraenergy.com/Pointdata/STTAllPoints.csv"
+		# TETCO
+		url = "https://linkwc.spectraenergy.com/Pointdata/TeAllPoints.csv"
 
-	def pull_data(self):
+		request = requests.get(url)
+		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
+		print(df)
+	 
+		return df
+
+	def pull_flow_data(self):
 		# url = "https://linkwc.spectraenergy.com/Pointdata/AgtAllPoints.csv"
 		# url = "https://linkwc.spectraenergy.com/Pointdata/EtAllPoints.csv"
 		#url = "https://peplmessenger.energytransfer.com/ipost/locations/index?f=csv&extension=csv&asset=PEPL&gasDay=2"

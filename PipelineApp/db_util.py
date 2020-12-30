@@ -5,13 +5,19 @@ from app import db
 
 
 class db_util: 
-	def insert_new_location(self,df):
+	def insert_new_loc(self,df):
 		for index, row in df.iterrows():
-			pl = pipeline_location(pipeline_id=1,loc_id=row["Loc"], name=row["Loc Name"], state=row["Loc St Abbrev"], county=row["Loc Cnty"],
-									zone=row["Loc Zone"], flow_direction=row["Dir Flo"], loc_type=row["Loc Type Ind"], 
-									created_at=datetime.now(), updated_at=datetime.now(), has_missing_details=None)
-			db.session.add(pl)
-			db.session.commit()
+			exists = pipeline_location.query.filter_by(loc_id=str(row["Loc"])).first() is not None
+			if exists == True:
+				print("Loc already in database")
+				pass
+			else:
+				pl = pipeline_location(pipeline_id=1,loc_id=row["Loc"], name=row["Loc Name"], state=row["Loc St Abbrev"], county=row["Loc Cnty"],
+										zone=row["Loc Zone"], flow_direction=row["Dir Flo"], loc_type=row["Loc Type Ind"], 
+										created_at=datetime.now(), updated_at=datetime.now(), has_missing_details=None)
+				db.session.add(pl)
+				db.session.commit()
+				print("Loc not found")
 
 
 	def insert_new_flow_data(self,df):
