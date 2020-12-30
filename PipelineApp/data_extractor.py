@@ -32,10 +32,23 @@ class extractor:
 		return df
 
 	def pull_flow_data(self):
-		# url = "https://linkwc.spectraenergy.com/Pointdata/AgtAllPoints.csv"
-		# url = "https://linkwc.spectraenergy.com/Pointdata/EtAllPoints.csv"
-		#url = "https://peplmessenger.energytransfer.com/ipost/locations/index?f=csv&extension=csv&asset=PEPL&gasDay=2"
-		url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=ET&Type=OA"
+		# # Algonquin
+		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=AG&Type=OA"
+		# # ETENN
+		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=ET&Type=OA"
+		# # Maritime
+		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=TE&Type=OA"
+		# # Nexus
+		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=NXUS&Type=OA"
+		# # Ozark
+		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=OGT&Type=OA"
+		# # SESH
+		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=SESH&Type=OA"
+		# # Sabal
+		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=STT&Type=OA"
+		# TETCO
+		url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=TE&Type=OA"
+
 		target = {
 			"ctl00$MainContent$ctl01$oaDefault$hlDown$LinkButton1"
 		}
