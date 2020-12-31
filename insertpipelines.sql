@@ -1,0 +1,35 @@
+INSERT INTO pipelines (id, name, created_at, updated_at, provider)
+VALUES (1,'Algonquin', current_timestamp, current_timestamp, 'Spectra Energy' ),
+		(2,'ETENN', current_timestamp, current_timestamp, 'Spectra Energy' ),
+		(3,'Maritime', current_timestamp, current_timestamp, 'Spectra Energy' ),
+		(4,'Nexus', current_timestamp, current_timestamp, 'Spectra Energy' ),
+		(5,'Ozark', current_timestamp, current_timestamp, 'Spectra Energy' ),
+		(6,'SESH', current_timestamp, current_timestamp, 'Spectra Energy' ),
+		(7,'Sabal', current_timestamp, current_timestamp, 'Spectra Energy' ),
+		(8,'TETCO', current_timestamp, current_timestamp, 'Spectra Energy' ),
+		(9,'Elba', current_timestamp, current_timestamp, 'Kinder Morgan'),
+		(10,'MEP', current_timestamp, current_timestamp, 'Kinder Morgan'),
+		(11,'NGPL', current_timestamp, current_timestamp, 'Kinder Morgan'),
+		(12,'SONAT', current_timestamp, current_timestamp, 'Kinder Morgan'),
+		(13,'TGP', current_timestamp, current_timestamp, 'Kinder Morgan'),
+		(14,'FGT', current_timestamp, current_timestamp, 'Energy Transfer'),
+		(15,'PEPL', current_timestamp, current_timestamp, 'Energy Transfer'),
+		(16,'Rover', current_timestamp, current_timestamp, 'Energy Transfer'),
+		(17,'Trunkline', current_timestamp, current_timestamp, 'Energy Transfer'),
+		(18,'GulfSouth', current_timestamp, current_timestamp, 'Boardwalk'),
+		(19,'TGT', current_timestamp, current_timestamp, 'Boardwalk'),
+		(20,'Transco', current_timestamp, current_timestamp, 'Williams'),
+		(21,'CGT', current_timestamp, current_timestamp, 'TC Energy'),
+		(22,'MPC', current_timestamp, current_timestamp, 'TC Energy'),
+		(23,'PNGTS', current_timestamp, current_timestamp, 'TC Energy'),
+		(24,'TCO', current_timestamp, current_timestamp, 'TC Energy'),
+		(25,'XRD', current_timestamp, current_timestamp, 'TC Energy'),
+		(26,'ANR', current_timestamp, current_timestamp, 'TC Energy'),
+		(27,'Ozark', current_timestamp, current_timestamp, 'Blackbear'),
+		(28,'Destin', current_timestamp, current_timestamp, 'Blackbear'),
+		(29,'Alatenn', current_timestamp, current_timestamp, 'Blackbear'),
+		(30,'Natfuel', current_timestamp, current_timestamp, '')
+	
+		
+		
+		

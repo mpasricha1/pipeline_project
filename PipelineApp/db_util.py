@@ -5,7 +5,7 @@ from app import db
 
 
 class db_util: 
-	def insert_new_loc(self,df):
+	def insert_new_loc_data(self,df):
 		for index, row in df.iterrows():
 			exists = pipeline_location.query.filter_by(loc_id=str(row["Loc"])).first() is not None
 			if exists == True:

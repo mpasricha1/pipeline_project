@@ -22,8 +22,8 @@ class extractor:
 		# url = "https://linkwc.spectraenergy.com/Pointdata/SeshAllPoints.csv"
 		# # Sabal
 		# url = "https://linkwc.spectraenergy.com/Pointdata/STTAllPoints.csv"
-		# TETCO
-		url = "https://linkwc.spectraenergy.com/Pointdata/TeAllPoints.csv"
+		# # TETCO
+		# url = "https://linkwc.spectraenergy.com/Pointdata/TeAllPoints.csv"
 
 		request = requests.get(url)
 		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
