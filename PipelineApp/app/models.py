@@ -1,8 +1,9 @@
 from app import db 
 
 class pipelines(db.Model): 
-	id = db.Column(db.String(), primary_key=True)
+	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String())
+	tsp = db.Column(db.Integer)
 	created_at = db.Column(db.DateTime)
 	updated_at = db.Column(db.DateTime)
 	provider = db.Column(db.String())
@@ -13,7 +14,7 @@ class pipelines(db.Model):
 
 class pipeline_location(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	pipeline_id = db.Column(db.String(), db.ForeignKey("pipelines.id"))
+	pipeline_id = db.Column(db.Integer, db.ForeignKey("pipelines.id"))
 	loc_id = db.Column(db.String())
 	name = db.Column(db.String())
 	state = db.Column(db.String())

@@ -8,8 +8,8 @@ import time
 
 class extractor:
 	def pull_loc_data(self):
-		# # Algonquin
-		# url = "https://linkwc.spectraenergy.com/Pointdata/EtAllPoints.csv"
+		# Algonquin
+		url = "https://linkwc.spectraenergy.com/Pointdata/EtAllPoints.csv"
 		# # ETENN
 		# url = "https://linkwc.spectraenergy.com/Pointdata/AgtAllPoints.csv"
 		# # Maritime
