@@ -13,23 +13,23 @@ class db_util:
 				print("Loc already in database")
 				pass
 			else:
-				pipeline_id = pipelines.query.filter_by(name=row["TSP Name"]).first()
-				print(pipeline_id.id)
-				# if row["Dir Flo"].lower() == 'b':
-				# 	print("Found Bi Directional")
-				# 	dirFlow = ["D", "R"]
-				# 	for x in range(dirFlow):
-				# 		pl = pipeline_location(pipeline_id=1,loc_id=row["Loc"], name=row["Loc Name"], state=row["Loc St Abbrev"], county=row["Loc Cnty"],
-				# 								zone=row["Loc Zone"], flow_direction=x, loc_type=row["Loc Type Ind"], 
-				# 								created_at=datetime.now(), updated_at=datetime.now(), has_missing_details=None)
-				# 		db.session.add(pl)
-				# 		db.session.commit()
-				# else:
-				# 	pl = pipeline_location(pipeline_id=1,loc_id=row["Loc"], name=row["Loc Name"], state=row["Loc St Abbrev"], county=row["Loc Cnty"],
-				# 								zone=row["Loc Zone"], flow_direction=row["Dir Flo"], loc_type=row["Loc Type Ind"], 
-				# 								created_at=datetime.now(), updated_at=datetime.now(), has_missing_details=None)
-				# 	db.session.add(pl)
-				# 	db.session.commit()
+				pipeline = pipelines.query.filter_by(tsp=row["TSP"]).first()
+				print(pipeline.id)
+				if row["Dir Flo"].lower() == 'b':
+					print("Found Bi Directional")
+					dirFlow = ["D", "R"]
+					for x in dirFlow:
+						pl = pipeline_location(pipeline_id=pipeline.id,loc_id=row["Loc"], name=row["Loc Name"], state=row["Loc St Abbrev"], county=row["Loc Cnty"],
+												zone=row["Loc Zone"], flow_direction=x, loc_type=row["Loc Type Ind"], 
+												created_at=datetime.now(), updated_at=datetime.now(), has_missing_details=None)
+						db.session.add(pl)
+						db.session.commit()
+				else:
+					pl = pipeline_location(pipeline_id=pipeline.id,loc_id=row["Loc"], name=row["Loc Name"], state=row["Loc St Abbrev"], county=row["Loc Cnty"],
+												zone=row["Loc Zone"], flow_direction=row["Dir Flo"], loc_type=row["Loc Type Ind"], 
+												created_at=datetime.now(), updated_at=datetime.now(), has_missing_details=None)
+					db.session.add(pl)
+					db.session.commit()
 
 				print("Loc not found")
 
