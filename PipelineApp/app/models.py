@@ -39,6 +39,8 @@ class flow_readings(db.Model):
 	flow_dir = db.Column(db.String())
 	created_at = db.Column(db.DateTime)
 	updated_at = db.Column(db.DateTime)
+	cycle_desc = db.Column(db.String())
+
 
 	def __repr__(self):
 		return '<flow_readings {}>'.format(self.id)

@@ -9,7 +9,7 @@ import time
 class extractor:
 	def pull_loc_data(self):
 		# Algonquin
-		url = "https://linkwc.spectraenergy.com/Pointdata/AgtAllPoints.csv"
+		# url = "https://linkwc.spectraenergy.com/Pointdata/AgtAllPoints.csv"
 		# # ETENN
 		# url = "https://linkwc.spectraenergy.com/Pointdata/EtAllPoints.csv"
 		# # Maritime
@@ -32,8 +32,8 @@ class extractor:
 		return df
 
 	def pull_flow_data(self):
-		# # Algonquin
-		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=AG&Type=OA"
+		# Algonquin
+		url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=AG&Type=OA"
 		# # ETENN
 		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=ET&Type=OA"
 		# # Maritime
@@ -47,7 +47,7 @@ class extractor:
 		# # Sabal
 		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=STT&Type=OA"
 		# TETCO
-		url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=TE&Type=OA"
+		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=TE&Type=OA"
 
 		target = {
 			"ctl00$MainContent$ctl01$oaDefault$hlDown$LinkButton1"
