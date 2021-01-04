@@ -25,17 +25,26 @@ class extractor:
 		# # TETCO
 		# url = "https://linkwc.spectraenergy.com/Pointdata/TeAllPoints.csv"
 
+		#PEPL
+		# url = "https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=12%2F24%2F2020&cycleDesc=Final&pointCd=&name="
+		# # url = "https://peplmessenger.energytransfer.com/ipost/locations/index?f=csv&extension=csv&asset=PEPL&gasDay="
+
+		#Blackbear ozark
+		url = "http://www.hienergyebb.com/OZARK/Capacity/OperationallyAvailableCapacitySummaryCSV"
+
 		request = requests.get(url)
 		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
+		df.to_csv("output.csv")
 		print(df)
+		
 	 
-		return df
+		# return df
 
 	def pull_flow_data(self):
 		# Algonquin
-		url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=AG&Type=OA"
+		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=AG&Type=OA"
 		# # ETENN
-		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=ET&Type=OA"
+		url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=ET&Type=OA"
 		# # Maritime
 		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=TE&Type=OA"
 		# # Nexus
