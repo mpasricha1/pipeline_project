@@ -41,10 +41,11 @@ class extractor:
 		# return df
 
 	def pull_flow_data(self):
+		# Specter
 		# Algonquin
 		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=AG&Type=OA"
 		# # ETENN
-		url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=ET&Type=OA"
+		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=ET&Type=OA"
 		# # Maritime
 		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=TE&Type=OA"
 		# # Nexus
@@ -58,10 +59,19 @@ class extractor:
 		# TETCO
 		# url = "https://rtba.spectraenergy.com/InformationalPosting/Default.aspx?bu=TE&Type=OA"
 
-		target = {
-			"ctl00$MainContent$ctl01$oaDefault$hlDown$LinkButton1"
-		}
-		# target = {"ctl00$MainContent$ctl01$oaDefault$ucDate$rdpDate"}
+		#Kinder Morgan
+		#Elba
+		# url = "https://pipeline2.kindermorgan.com/Capacity/OpAvailSegment.aspx?code=EEC"
+
+		#Boardwalk
+		#Gulf 
+		url = "https://infopost.bwpipelines.com/Frameset.aspx?url=%2FPosting%2Fdefault.aspx%3FMode%3DDisplay%26Id%3D11&tspid=1"
+
+
+		# target = {
+		# 	"ctl00$MainContent$ctl01$oaDefault$hlDown$LinkButton1"
+		# }
+		# target = {"ctl00$WebSplitter1$tmpl1$ContentPlaceHolder1$HeaderBTN1$btnDownload"}
 
 		browser = webdriver.Chrome(executable_path="chromedriver.exe")
 		browser.get(url)
@@ -86,21 +96,23 @@ class extractor:
 			request = s.get(url, allow_redirects=True)
 			soup = BeautifulSoup(request.content, "html.parser")
 
+			target = soup.find("input", {"id": "__EVENTTarget"})["value"]
+			print(target)
 			view_state = soup.find("input", {"id": "__VIEWSTATE"})["value"]
 			validation = soup.find("input", {"id": "__EVENTVALIDATION"})["value"]
 			
 			request = s.post(url, data={
 				"__EVENTTarget": target,
 				"__VIEWSTATE": view_state, 
-				"__EVENTVALIDATION": validation, 
-				"ddlSelector" : "LATE_2020-12-20_0900"
+				"__EVENTVALIDATION": validation
 
 				})
 			soup = BeautifulSoup(request.content, "html.parser")
-			df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
+			print(request.text)
+			# df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
 
-		print(df)
-		return df
+		# print(df)
+		# return df
 
 	def scraper(self): 
 		

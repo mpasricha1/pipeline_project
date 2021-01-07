@@ -10,7 +10,7 @@ from app import app
 @app.route('/index')
 def index():
 	extract = extractor()
-	data = extract.pull_loc_data()
+	data = extract.pull_flow_data()
 	# db = db_util() 
 	# db.insert_new_flow_data(data)
 
