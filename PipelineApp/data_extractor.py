@@ -7,38 +7,21 @@ import io
 import time
 
 class extractor:
-	def pull_loc_data(self):
-		# Algonquin
-		# url = "https://linkwc.spectraenergy.com/Pointdata/AgtAllPoints.csv"
-		# # ETENN
-		# url = "https://linkwc.spectraenergy.com/Pointdata/EtAllPoints.csv"
-		# # Maritime
-		# url = "https://linkwc.spectraenergy.com/Pointdata/MnusAllPoints.csv"
-		# # Nexus
-		# url = "https://linkwc.spectraenergy.com/Pointdata/NXUSAllPoints.csv"
-		# # Ozark
-		# url = "https://linkwc.spectraenergy.com/Pointdata/OgtAllPoints.csv"
-		# # SESH
-		# url = "https://linkwc.spectraenergy.com/Pointdata/SeshAllPoints.csv"
-		# # Sabal
-		# url = "https://linkwc.spectraenergy.com/Pointdata/STTAllPoints.csv"
-		# # TETCO
-		# url = "https://linkwc.spectraenergy.com/Pointdata/TeAllPoints.csv"
+	def pull_loc_data(self,url):
 
 		#PEPL
 		# url = "https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=12%2F24%2F2020&cycleDesc=Final&pointCd=&name="
 		# # url = "https://peplmessenger.energytransfer.com/ipost/locations/index?f=csv&extension=csv&asset=PEPL&gasDay="
 
 		#Blackbear ozark
-		url = "http://www.hienergyebb.com/OZARK/Capacity/OperationallyAvailableCapacitySummaryCSV"
+		# url = "http://www.hienergyebb.com/OZARK/Capacity/OperationallyAvailableCapacitySummaryCSV"
 
 		request = requests.get(url)
 		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
-		df.to_csv("output.csv")
 		print(df)
 		
 	 
-		# return df
+		return df
 
 	def pull_flow_data(self):
 		# Specter

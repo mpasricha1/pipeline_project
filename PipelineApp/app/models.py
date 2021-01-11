@@ -8,6 +8,7 @@ class pipelines(db.Model):
 	updated_at = db.Column(db.DateTime)
 	provider = db.Column(db.String())
 	code = db.Column(db.String())
+	loc_file_url = db.Column(db.String())
 
 	def __repr__(self):
 		return '<pipelines {}>'.format(self.name)

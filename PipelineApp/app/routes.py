@@ -9,9 +9,17 @@ from app import app
 @app.route('/')
 @app.route('/index')
 def index():
+	db = db_util()
 	extract = extractor()
-	data = extract.pull_flow_data()
-	# db = db_util() 
-	# db.insert_new_flow_data(data)
+	url_list = db.generate_loc_url_list("Spectra Energy")
+
+	for url in url_list:
+		if url != '':
+			print(url)
+			data = extract.pull_loc_data(url)
+			db.insert_new_loc_data(data)
+		else:
+			pass
+
 
 	return render_template("index.html")
