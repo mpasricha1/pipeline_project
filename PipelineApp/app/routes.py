@@ -11,7 +11,7 @@ from app import app
 def index():
 	db = db_util()
 	extract = extractor()
-	url_list = db.generate_loc_url_list("Spectra Energy")
+	url_list = db.generate_loc_url_list("Energy Transfer")
 
 	for url in url_list:
 		if url != '':
