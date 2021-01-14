@@ -1,7 +1,7 @@
 from selenium import webdriver 
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 import pandas as pd
 import requests
 import io
@@ -10,15 +10,18 @@ import time
 
 class extractor:
 
-	def generate_date(self):
-		date = datetime.now() 
-		url_date = f"{date.month}%2F{date.day-1}%2F{date.year}"
+	def generate_date_for_url(self):
+		date = datetime.today() - timedelta(days=1)
+		url_date = f"{date.month}%2F{date.day}%2F{date.year}"
 
 		return url_date
 		
+	def generate_cycle_count(self,tsp):
+		return f"Final-{(datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')}-{tsp}"
+
 	def pull_loc_data(self,url):
-		date = self.generate_date()
-		url = url.format(date)
+		date = self.generate_date_for_url()
+		final_url = url["url"].format(date)
 
 		#PEPL
 		# url = "https://tgcmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=TGC&gasDay=01%2F13%2F2021&cycleDesc=Intraday%202&pointCd=&name="
@@ -27,11 +30,12 @@ class extractor:
 		#Blackbear ozark
 		# url = "http://www.hienergyebb.com/OZARK/Capacity/OperationallyAvailableCapacitySummaryCSV"
 
-		request = requests.get(url)
+		request = requests.get(final_url)
 		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
+
+		df["Cycle_Desc"] = self.generate_cycle_count(url["tsp"])
+
 		print(df)
-		
-	 
 		return df
 
 	def pull_flow_data(self):

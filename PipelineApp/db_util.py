@@ -20,7 +20,10 @@ class db_util:
 
 	 	url_list = []
 	 	for loc in loc_list:
-	 		url_list.append(loc.flow_file_url)
+	 		url_dict = {} 
+	 		url_dict["url"] = loc.flow_file_url
+	 		url_dict["tsp"] = loc.tsp
+	 		url_list.append(url_dict)
 
 	 	return url_list
 

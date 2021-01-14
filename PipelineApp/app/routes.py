@@ -14,9 +14,7 @@ def index():
 	url_list = db.generate_flow_url_list("Energy Transfer")
 
 	for url in url_list:
-		if url != '':
-			print(url)
-			extract.generate_date()
+		if url["url"] != '':
 			data = extract.pull_loc_data(url)
 			db.insert_new_flow_data(data)
 		else:
