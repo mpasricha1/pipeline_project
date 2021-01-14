@@ -11,15 +11,18 @@ from app import app
 def index():
 	db = db_util()
 	extract = extractor()
-	url_list = db.generate_loc_url_list("Energy Transfer")
+	url_list = db.generate_flow_url_list("Energy Transfer")
 
 	for url in url_list:
 		if url != '':
 			print(url)
+			extract.generate_date()
 			data = extract.pull_loc_data(url)
-			db.insert_new_loc_data(data)
+			db.insert_new_flow_data(data)
 		else:
 			pass
+
+
 
 
 	return render_template("index.html")

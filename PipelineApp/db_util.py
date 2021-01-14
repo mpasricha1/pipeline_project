@@ -15,6 +15,15 @@ class db_util:
 
 	 	return url_list
 
+	def generate_flow_url_list(self,provider):
+	 	loc_list = pipelines.query.filter_by(provider=provider).all()
+
+	 	url_list = []
+	 	for loc in loc_list:
+	 		url_list.append(loc.flow_file_url)
+
+	 	return url_list
+
 	def insert_new_loc_data(self,df):
 		for index, row in df.iterrows():
 			exists = pipeline_location.query.filter_by(loc_id=str(row["Loc"])).first() is not None

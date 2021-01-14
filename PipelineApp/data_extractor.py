@@ -1,16 +1,27 @@
 from selenium import webdriver 
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
+from datetime import datetime
 import pandas as pd
 import requests
 import io
 import time
 
+
 class extractor:
+
+	def generate_date(self):
+		date = datetime.now() 
+		url_date = f"{date.month}%2F{date.day-1}%2F{date.year}"
+
+		return url_date
+		
 	def pull_loc_data(self,url):
+		date = self.generate_date()
+		url = url.format(date)
 
 		#PEPL
-		# url = "https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=12%2F24%2F2020&cycleDesc=Final&pointCd=&name="
+		# url = "https://tgcmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=TGC&gasDay=01%2F13%2F2021&cycleDesc=Intraday%202&pointCd=&name="
 		# # url = "https://peplmessenger.energytransfer.com/ipost/locations/index?f=csv&extension=csv&asset=PEPL&gasDay="
 
 		#Blackbear ozark

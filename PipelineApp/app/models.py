@@ -9,6 +9,7 @@ class pipelines(db.Model):
 	provider = db.Column(db.String())
 	code = db.Column(db.String())
 	loc_file_url = db.Column(db.String())
+	flow_file_url = db.Column(db.String())
 
 	def __repr__(self):
 		return '<pipelines {}>'.format(self.name)
