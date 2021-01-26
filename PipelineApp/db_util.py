@@ -63,13 +63,19 @@ class db_util:
 				if row["Flow_Ind_Desc"].lower() == "delivery" or row["Flow_Ind_Desc"].lower() == "storage injection":
 					flow_dir = "D"
 				else:
-					flow_dir = "R" 
+					flow_dir = "R"
+				try:
+					row["Operating_Capacity"].replace(",","")
+					row["Total_Scheduled_Quantity"].replace(",","")
+				except:
+					pass
+
 				exists = pipeline_location.query.filter_by(loc_id=str(row["Loc"]), flow_direction=flow_dir).first() is not None
 				if exists == True:
 					print(flow_dir)
 					loc = pipeline_location.query.filter_by(loc_id=str(row["Loc"]), flow_direction=flow_dir).first()
 					fr = flow_readings(pipeline_location_id=loc.id, loc_id=row["Loc"], flow_date=row["Eff_Gas_Day"], 
-											oc=int(row["Operating_Capacity"].replace(",","")), tsq=int(row["Total_Scheduled_Quantity"].replace(",","")), 
+											oc=int(row["Operating_Capacity"]), tsq=int(row["Total_Scheduled_Quantity"]), 
 											flow_dir=row["Flow_Ind_Desc"], created_at=datetime.now(), updated_at=datetime.now(), cycle_desc=row["Cycle_Desc"])
 					db.session.add(fr)
 					db.session.commit()
@@ -84,7 +90,7 @@ class db_util:
 					
 					loc = pipeline_location.query.filter_by(loc_id=str(row["Loc"])).first()
 					fr = flow_readings(pipeline_location_id=loc.id, loc_id=row["Loc"], flow_date=row["Eff_Gas_Day"], 
-										oc=int(row["Operating_Capacity"].replace(",","")), tsq=int(row["Total_Scheduled_Quantity"].replace(",","")), 
+										oc=int(row["Operating_Capacity"]), tsq=int(row["Total_Scheduled_Quantity"]), 
 										flow_dir=row["Flow_Ind_Desc"], created_at=datetime.now(), updated_at=datetime.now(), cycle_desc=row["Cycle_Desc"])
 					db.session.add(fr)
 					db.session.commit()

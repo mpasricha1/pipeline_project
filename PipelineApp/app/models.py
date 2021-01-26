@@ -36,7 +36,7 @@ class flow_readings(db.Model):
 	pipeline_location_id = db.Column(db.Integer, db.ForeignKey("pipeline_location.id"))
 	loc_id = db.Column(db.String())
 	flow_date = db.Column(db.Date)
-	oc = db.Column(db.String())
+	oc = db.Column(db.Integer)
 	tsq = db.Column(db.Integer)
 	flow_dir = db.Column(db.String())
 	created_at = db.Column(db.DateTime)

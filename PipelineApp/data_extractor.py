@@ -7,7 +7,9 @@ import requests
 import io
 import time
 
-
+# https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=01%2F14%2F2021&
+# https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=01%2F15%2F2021&cycleDesc=Intraday%202&pointCd=&name=
+# https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=01%2F16%2F2021&cycleDesc=Timely&pointCd=&name=
 class extractor:
 
 	def generate_date_for_url(self):
@@ -33,9 +35,28 @@ class extractor:
 		request = requests.get(final_url)
 		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
 
+
+			# for index, row in df.iterrows():
+			# 	if row["Flow Ind"] == "R":
+			# 		print("Found R")
+			# 		df["Total_Scheduled_Quantity"].iloc[index] = row["TSQ (Rec)"]
+			# 	else:
+			# 		print("Found D")
+			# 		df["Total_Scheduled_Quantity"].iloc[index] = row["TSQ (Del)"]
+
 		df["Cycle_Desc"] = self.generate_cycle_count(url["tsp"])
+		df["Eff_Gas_Day"] = datetime.today() - timedelta(days=1)
+		df["TSP"] = url["tsp"]
+		df.rename(columns={"Flow Ind": "Flow_Ind_Desc", "OPC": "Operating_Capacity", 
+						   "TSQ": "Total_Scheduled_Quantity", "Loc Zn": "Loc_Zn", "Loc Name": "Loc_Name"}, inplace=True)
+
+		if url["tsp"] == 6924518:
+			print("FOUND")
+			df["Total_Scheduled_Quantity"] = df["TSQ (Rec)"] + df["TSQ (Del)"]
+
 
 		print(df)
+		df.to_csv("Test.csv")
 		return df
 
 	def pull_flow_data(self):
