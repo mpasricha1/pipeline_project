@@ -12,14 +12,19 @@ import time
 # https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=01%2F16%2F2021&cycleDesc=Timely&pointCd=&name=
 class extractor:
 
-	def generate_date_for_url(self):
-		date = datetime.today() - timedelta(days=1)
+	def generate_date_for_url(self, cycle):
+		if cycle == 'Final' or cycle == 'Timely' or  cycle =='Evening':
+			date = datetime.today() - timedelta(days=1)
+		else:
+			print("In Else")
+			date = datetime.today()
+
 		url_date = f"{date.month}%2F{date.day}%2F{date.year}"
 
 		return url_date
 		
-	def generate_cycle_count(self,tsp):
-		return f"Final-{(datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')}-{tsp}"
+	def generate_cycle_count(self,tsp, cycle):
+		return f"{cycle}-{(datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')}-{tsp}"
 
 	def pull_loc_data(self, url):
 		request = requests.get(final_url)
@@ -29,33 +34,45 @@ class extractor:
 		return df		
 
 	def pull_energy_transfer_flow_data(self,url):
-		date = self.generate_date_for_url()
-		final_url = url["url"].format(date)
+		file_list = ['Timely', 'Evening', 'Final', 'Intraday%201', 'Intraday%202', 'Intraday%203']
+		master_df = pd.DataFrame()
 
-		#PEPL
-		# url = "https://tgcmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=TGC&gasDay=01%2F13%2F2021&cycleDesc=Intraday%202&pointCd=&name="
-		# # url = "https://peplmessenger.energytransfer.com/ipost/locations/index?f=csv&extension=csv&asset=PEPL&gasDay="
+		for file in file_list:
+			date = self.generate_date_for_url(file)
+			template_values = {
+				'date': date, 
+				'file': file
+			}
+			final_url = url["url"].format(date,file)
+			print(final_url)
 
-		#Blackbear ozark
-		# url = "http://www.hienergyebb.com/OZARK/Capacity/OperationallyAvailableCapacitySummaryCSV"
+			#PEPL
+			# url = "https://tgcmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=TGC&gasDay=01%2F13%2F2021&cycleDesc=Intraday%202&pointCd=&name="
+			# # url = "https://peplmessenger.energytransfer.com/ipost/locations/index?f=csv&extension=csv&asset=PEPL&gasDay="
 
-		request = requests.get(final_url)
-		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
+			#Blackbear ozark
+			# url = "http://www.hienergyebb.com/OZARK/Capacity/OperationallyAvailableCapacitySummaryCSV"
 
-
-		df["Cycle_Desc"] = self.generate_cycle_count(url["tsp"])
-		df["Eff_Gas_Day"] = datetime.today() - timedelta(days=1)
-		df["TSP"] = url["tsp"]
-		df.rename(columns={"Flow Ind": "Flow_Ind_Desc", "OPC": "Operating_Capacity", 
-						   "TSQ": "Total_Scheduled_Quantity", "Loc Zn": "Loc_Zn", "Loc Name": "Loc_Name"}, inplace=True)
-
-		if url["tsp"] == 6924518:
-			df["Total_Scheduled_Quantity"] = df["TSQ (Rec)"] + df["TSQ (Del)"]
+			request = requests.get(final_url)
+			df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
 
 
-		print(df)
-		df.to_csv("Test.csv")
-		return df
+			df["Cycle_Desc"] = self.generate_cycle_count(url["tsp"],file)
+			df["Eff_Gas_Day"] = datetime.today() - timedelta(days=1)
+			df["TSP"] = url["tsp"]
+			df.rename(columns={"Flow Ind": "Flow_Ind_Desc", "OPC": "Operating_Capacity", 
+							   "TSQ": "Total_Scheduled_Quantity", "Loc Zn": "Loc_Zn", "Loc Name": "Loc_Name"}, inplace=True)
+
+			if url["tsp"] == 6924518:
+				df["Total_Scheduled_Quantity"] = df["TSQ (Rec)"] + df["TSQ (Del)"]
+
+
+			print(df)
+			master_df = master_df.append(df)
+			
+		# print(master_df)
+		master_df.to_csv("final.csv")
+		return master_df
 
 	def pull_flow_data(self):
 		# Specter
