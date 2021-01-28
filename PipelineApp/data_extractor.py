@@ -51,7 +51,6 @@ class extractor:
 						   "TSQ": "Total_Scheduled_Quantity", "Loc Zn": "Loc_Zn", "Loc Name": "Loc_Name"}, inplace=True)
 
 		if url["tsp"] == 6924518:
-			print("FOUND")
 			df["Total_Scheduled_Quantity"] = df["TSQ (Rec)"] + df["TSQ (Del)"]
 
 

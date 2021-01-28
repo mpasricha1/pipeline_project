@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
+import numpy as np
 from datetime import datetime
 from app.models import pipeline_location, flow_readings, pipelines
 from app import db
@@ -81,6 +82,12 @@ class db_util:
 					db.session.commit()
 				else:
 					print("Inserting New Loc")
+					if np.isnan(row["Loc"]) == True:
+						row["Loc"] = 'noloc'
+						print("FUCKKKKK")
+					else:
+						row["Loc"] = int(row["Loc"])
+
 					pipeline = pipelines.query.filter_by(tsp=row["TSP"]).first()
 					pl = pipeline_location(pipeline_id=pipeline.id,loc_id=row["Loc"], name=row["Loc_Name"], state=None, county=None,
 													zone=row["Loc_Zn"], flow_direction=flow_dir, loc_type=None, 
