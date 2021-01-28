@@ -21,7 +21,14 @@ class extractor:
 	def generate_cycle_count(self,tsp):
 		return f"Final-{(datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')}-{tsp}"
 
-	def pull_loc_data(self,url):
+	def pull_loc_data(self, url):
+		request = requests.get(final_url)
+		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
+
+		print(df)
+		return df		
+
+	def pull_energy_transfer_flow_data(self,url):
 		date = self.generate_date_for_url()
 		final_url = url["url"].format(date)
 
@@ -35,14 +42,6 @@ class extractor:
 		request = requests.get(final_url)
 		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
 
-
-			# for index, row in df.iterrows():
-			# 	if row["Flow Ind"] == "R":
-			# 		print("Found R")
-			# 		df["Total_Scheduled_Quantity"].iloc[index] = row["TSQ (Rec)"]
-			# 	else:
-			# 		print("Found D")
-			# 		df["Total_Scheduled_Quantity"].iloc[index] = row["TSQ (Del)"]
 
 		df["Cycle_Desc"] = self.generate_cycle_count(url["tsp"])
 		df["Eff_Gas_Day"] = datetime.today() - timedelta(days=1)

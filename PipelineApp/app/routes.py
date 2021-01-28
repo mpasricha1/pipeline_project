@@ -15,7 +15,7 @@ def index():
 
 	for url in url_list:
 		if url["url"] != '':
-			data = extract.pull_loc_data(url)
+			data = extract.pull_energy_transfer_flow_data(url)
 			db.insert_new_flow_data(data)
 		else:
 			pass
