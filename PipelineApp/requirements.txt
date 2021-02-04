@@ -6,3 +6,4 @@ flask-mail==0.9.1
 beautifulsoup4==4.9.0
 selenium==3.141.0
 pandas==1.0.3
+requests==2.24.0
