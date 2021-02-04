@@ -16,7 +16,6 @@ class extractor:
 		if cycle == 'Final' or cycle == 'Timely' or  cycle =='Evening':
 			date = datetime.today() - timedelta(days=1)
 		else:
-			print("In Else")
 			date = datetime.today()
 
 		url_date = f"{date.month}%2F{date.day}%2F{date.year}"
@@ -38,24 +37,12 @@ class extractor:
 		master_df = pd.DataFrame()
 
 		for file in file_list:
-			date = self.generate_date_for_url(file)
-			template_values = {
-				'date': date, 
-				'file': file
-			}
-			final_url = url["url"].format(date,file)
+
+			final_url = url["url"].format(self.generate_date_for_url(file),file)
 			print(final_url)
-
-			#PEPL
-			# url = "https://tgcmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=TGC&gasDay=01%2F13%2F2021&cycleDesc=Intraday%202&pointCd=&name="
-			# # url = "https://peplmessenger.energytransfer.com/ipost/locations/index?f=csv&extension=csv&asset=PEPL&gasDay="
-
-			#Blackbear ozark
-			# url = "http://www.hienergyebb.com/OZARK/Capacity/OperationallyAvailableCapacitySummaryCSV"
 
 			request = requests.get(final_url)
 			df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
-
 
 			df["Cycle_Desc"] = self.generate_cycle_count(url["tsp"],file)
 			df["Eff_Gas_Day"] = datetime.today() - timedelta(days=1)
@@ -65,7 +52,6 @@ class extractor:
 
 			if url["tsp"] == 6924518:
 				df["Total_Scheduled_Quantity"] = df["TSQ (Rec)"] + df["TSQ (Del)"]
-
 
 			print(df)
 			master_df = master_df.append(df)
