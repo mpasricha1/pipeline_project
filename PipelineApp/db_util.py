@@ -28,6 +28,14 @@ class db_util:
 
 	 	return url_list
 
+	def generate_pipeline_names(self):
+		return pipelines.query.with_entities(pipelines.id,pipelines.name).order_by(pipelines.name.asc()).all()
+		
+	def generate_locs_by_pipeline(self, pipeline_id):
+		return pipeline_location.query.with_entities(pipeline_location.loc_id, pipeline_location.name).\
+					filter_by(pipeline_id=pipeline_id).order_by(pipeline_location.name.asc()).all()
+	
+
 	def insert_new_loc_data(self,df):
 		for index, row in df.iterrows():
 			exists = pipeline_location.query.filter_by(loc_id=str(row["Loc"])).first() is not None

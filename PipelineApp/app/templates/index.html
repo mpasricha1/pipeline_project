@@ -12,19 +12,21 @@
 			<div class="form-row">
 				<div class="col-md-3">
 					<div class="form-group">
-						<label for="input1">Label 1</label>
+						<label for="input1">Pipelines</label>
 						<select class="form-control" id="input1">
-							<option>Placeholder1</option>
-							<option>Placeholder2</option>
+							{% for p in pipelines %}
+							<option value= {{p[0]}}>{{p[1]}}</option>
+							{% endfor %}
 						</select>
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="form-group">
-						<label for="input2">Label 2</label>
+						<label for="input2">Locations</label>
 						<select class="form-control" id="input2">
-							<option>Placeholder1</option>
-							<option>Placeholder2</option>
+							{% for l in locs %}
+							<option value= {{l[0]}}>{{l[1]}}</option>
+							{% endfor %}>
 						</select>
 					</div>
 				</div>
