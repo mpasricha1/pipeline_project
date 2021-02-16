@@ -5,5 +5,6 @@ class Config(object):
 	DEBUG = True
 	CSRF_ENABLED = True
 	SECRET_KEY = os.environ.get('SECRET_KEY')
-	SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+	SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://postgres:tableBlackCream177&@threepm-dev1.chj3uciqytlo.us-east-1.rds.amazonaws.com:5432/threepm-dev1"
+	#os.environ.get("DATABASE_URL")
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
