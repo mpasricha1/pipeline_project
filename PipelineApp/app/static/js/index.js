@@ -1,3 +1,4 @@
  $("#pipelineid").click(function(){
-	console.log($("#pipelineid").find('option:selected').val());
-})
+	this.form.submit(); 
+	// let return val = $("#pipelineid").find('option:selected').val(); 
+});

@@ -7,7 +7,7 @@ from app import app
 
 
 @app.route('/')
-@app.route('/index')
+@app.route('/index', methods=["GET", "POST"])
 def index():
 	db = db_util()
 	# extract = extractor()
@@ -24,6 +24,10 @@ def index():
 	print(pipelines)
 	firstPipeline = pipelines[0][0]
 	locs = db.generate_locs_by_pipeline(firstPipeline)
+
+	if request.method == "POST":
+		returnVal = request.form.get("val")
+		print(returnVal)
 	
 
 	return render_template("index.html", pipelines=pipelines, locs=locs)
