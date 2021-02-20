@@ -13,7 +13,7 @@
 				<div class="col-md-3">
 					<div class="form-group">
 						<label for="input1">Pipelines</label>
-						<select class="form-control" id="pipelineid">
+						<select class="form-control" id="pipelineid" onChange="submitForm(event, this)">
 							{% for p in pipelines %}
 							<option value= {{p[0]}}>{{p[1]}}</option>
 							{% endfor %}
