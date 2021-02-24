@@ -1,14 +1,25 @@
-import time 
-from rq import get_current_job
+from data_extractor import extractor
+from db_util import db_util
 
-def example(seconds):
-	job = get_current_job();  
-	print("Starting task")
-	for i in range(seconds):
-		job.meta["progress"] = 100 * i
-		job.save_meta()
-		print(i)
-		time.sleep(1)
-	job.meta["progress"] = 100
-	job.save_meta()
-	print("Task Complete")
+from datetime import datetime
+
+def get_current_time():
+	now = datetime.now() 
+	current_time = now.strftime("%H:%M:%S")
+
+	return current_time
+
+
+def get_energy_transfer_data():
+	time = get_current_time()
+	print(time);
+	# db = db_util()
+	# extract = extractor()
+	# url_list = db.generate_flow_url_list("Energy Transfer")
+
+	# for url in url_list:
+	# 	if url["url"] != '':
+	# 		data = extract.pull_energy_transfer_flow_data(url)
+	#     	db.insert_new_flow_data(data)
+	#  	else:
+	#  		pass

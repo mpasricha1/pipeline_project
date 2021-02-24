@@ -1,24 +1,23 @@
 from flask import render_template, request, redirect, session, url_for
 from flask.json import jsonify
+from redis import Redis 
+import rq 
 from flask_migrate import Migrate
 from data_extractor import extractor
 from db_util import db_util
+from app import tasks
 from app import app 
+
+
+db = db_util()
+queue = rq.Queue('pipeline-tasks', connection=Redis.from_url('redis://'))
+job = queue.enqueue("app.tasks.get_energy_transfer_data", 20)
 
 
 @app.route('/')
 @app.route('/index', methods=["GET", "POST"])
 def index():
-	db = db_util()
-	# extract = extractor()
-	# url_list = db.generate_flow_url_list("Energy Transfer")
-
-	# for url in url_list:
-	# 	if url["url"] != '':
-	# 		data = extract.pull_energy_transfer_flow_data(url)
-	# 		# db.insert_new_flow_data(data)
-	# 	else:
-	# 		pass
+	
 
 	pipelines = db.generate_pipeline_names()
 	print(pipelines)
