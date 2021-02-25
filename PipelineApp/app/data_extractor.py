@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
+from db_util import db_util
 import pandas as pd
 import requests
 import io
@@ -12,6 +13,7 @@ import time
 # https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=01%2F16%2F2021&cycleDesc=Timely&pointCd=&name=
 class extractor:
 	def __init__(self, date):
+		self.db = db_util()
 		self.date = date
 		self.first_scrape = False
 		self.second_scrape = False 
@@ -20,6 +22,17 @@ class extractor:
 		self.fifth_scrape = False
 		self.sixth_scrape = False
 		self.scrape_complete = False
+
+	def status():
+		print("Extractor Ready and Waiting")
+		print(f"Extractors date is {self.date}")
+		print(f"First Scrap: {self.first_scrape}")
+		print(f"Second Scrap: {self.second_scrape}")
+		print(f"Third Scrap: {self.third_scrape}")
+		print(f"Fourth Scrap: {self.fourth_scrape}")
+		print(f"Fifth Scrap: {self.fifth_scrape}")
+		print(f"Sixth Scrap: {self.sixth_scrape}")
+		print(f"Scrape Is Complete: {self.scrape_complete}")
 
 	def get_date():
 		return this.date 
@@ -71,7 +84,10 @@ class extractor:
 			
 		# print(master_df)
 		master_df.to_csv("final.csv")
-		return master_df
+		
+		self.db.insert_new_flow_data(master_df)
+
+		return
 
 	def pull_flow_data(self):
 		# Specter
