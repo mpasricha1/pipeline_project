@@ -11,6 +11,14 @@ import time
 # https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=01%2F15%2F2021&cycleDesc=Intraday%202&pointCd=&name=
 # https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=01%2F16%2F2021&cycleDesc=Timely&pointCd=&name=
 class extractor:
+	def __init__(self):
+		self.date = ""
+		self.first_scrape = False
+		self.second_scrape = False 
+		self.third_scrape = False 
+		self.fourth_scrape = False 
+		self.fifth_scrape = False
+		self.sixth_scrape = False
 
 	def generate_date_for_url(self, cycle):
 		if cycle == 'Final' or cycle == 'Timely' or  cycle =='Evening':
@@ -32,8 +40,8 @@ class extractor:
 		print(df)
 		return df		
 
-	def pull_energy_transfer_flow_data(self,url):
-		file_list = ['Timely', 'Evening', 'Final', 'Intraday%201', 'Intraday%202', 'Intraday%203']
+	def pull_energy_transfer_flow_data(self,url, cycle):
+		
 		master_df = pd.DataFrame()
 
 		for file in file_list:
