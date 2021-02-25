@@ -11,14 +11,21 @@ import time
 # https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=01%2F15%2F2021&cycleDesc=Intraday%202&pointCd=&name=
 # https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=01%2F16%2F2021&cycleDesc=Timely&pointCd=&name=
 class extractor:
-	def __init__(self):
-		self.date = ""
+	def __init__(self, date):
+		self.date = date
 		self.first_scrape = False
 		self.second_scrape = False 
 		self.third_scrape = False 
 		self.fourth_scrape = False 
 		self.fifth_scrape = False
 		self.sixth_scrape = False
+		self.scrape_complete = False
+
+	def get_date():
+		return this.date 
+
+	def get_status():
+		return this.scrape_complete
 
 	def generate_date_for_url(self, cycle):
 		if cycle == 'Final' or cycle == 'Timely' or  cycle =='Evening':
@@ -44,25 +51,23 @@ class extractor:
 		
 		master_df = pd.DataFrame()
 
-		for file in file_list:
+		final_url = url["url"].format(self.generate_date_for_url(cycle),cycle)
+		print(final_url)
 
-			final_url = url["url"].format(self.generate_date_for_url(file),file)
-			print(final_url)
+		request = requests.get(final_url)
+		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
 
-			request = requests.get(final_url)
-			df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
+		df["Cycle_Desc"] = self.generate_cycle_count(url["tsp"],file)
+		df["Eff_Gas_Day"] = datetime.today() - timedelta(days=1)
+		df["TSP"] = url["tsp"]
+		df.rename(columns={"Flow Ind": "Flow_Ind_Desc", "OPC": "Operating_Capacity", 
+							"TSQ": "Total_Scheduled_Quantity", "Loc Zn": "Loc_Zn", "Loc Name": "Loc_Name"}, inplace=True)
 
-			df["Cycle_Desc"] = self.generate_cycle_count(url["tsp"],file)
-			df["Eff_Gas_Day"] = datetime.today() - timedelta(days=1)
-			df["TSP"] = url["tsp"]
-			df.rename(columns={"Flow Ind": "Flow_Ind_Desc", "OPC": "Operating_Capacity", 
-							   "TSQ": "Total_Scheduled_Quantity", "Loc Zn": "Loc_Zn", "Loc Name": "Loc_Name"}, inplace=True)
+		if url["tsp"] == 6924518:
+			df["Total_Scheduled_Quantity"] = df["TSQ (Rec)"] + df["TSQ (Del)"]
 
-			if url["tsp"] == 6924518:
-				df["Total_Scheduled_Quantity"] = df["TSQ (Rec)"] + df["TSQ (Del)"]
-
-			print(df)
-			master_df = master_df.append(df)
+		print(df)
+		master_df = master_df.append(df)
 			
 		# print(master_df)
 		master_df.to_csv("final.csv")
