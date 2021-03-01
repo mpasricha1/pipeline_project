@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
-from db_util import db_util
+# from db_util import db_util
 import pandas as pd
 import requests
 import io
@@ -13,7 +13,7 @@ import time
 # https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=01%2F16%2F2021&cycleDesc=Timely&pointCd=&name=
 class extractor:
 	def __init__(self, date):
-		self.db = db_util()
+		# self.db = db_util()
 		self.date = date
 		self.first_scrape = False
 		self.second_scrape = False 
@@ -23,7 +23,7 @@ class extractor:
 		self.sixth_scrape = False
 		self.scrape_complete = False
 
-	def status():
+	def status(self):
 		print("Extractor Ready and Waiting")
 		print(f"Extractors date is {self.date}")
 		print(f"First Scrap: {self.first_scrape}")
@@ -34,10 +34,10 @@ class extractor:
 		print(f"Sixth Scrap: {self.sixth_scrape}")
 		print(f"Scrape Is Complete: {self.scrape_complete}")
 
-	def get_date():
+	def get_date(self):
 		return this.date 
 
-	def get_status():
+	def get_status(self):
 		return this.scrape_complete
 
 	def generate_date_for_url(self, cycle):
