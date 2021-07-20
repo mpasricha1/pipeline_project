@@ -34,7 +34,7 @@ class Extractor:
 		return f"{cycle}-{(datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')}-{tsp}"
 
 	def pull_loc_data(self, url):
-		request = requests.get(final_url)
+		request = requests.get(url)
 		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
 
 		print(df)
