@@ -3,7 +3,7 @@ from datetime import datetime
 
 class Logger():
 	def create_logs(self,name):
-		logging.basicConfig(filename=f'{name}_Log_{datetime.now().strftime("%Y-%m-%d-%H:%M%S")}.txt', level=logging.DEBUG)
+		logging.basicConfig(filename=f'{name}_Log_{datetime.now().strftime("%Y-%m-%d")}.txt', level=logging.DEBUG)
 
 	def log_info(self, message):
 		logging.info(f'{datetime.now().strftime("%Y-%m-%d-%H:%M%S")} :: {message}')
