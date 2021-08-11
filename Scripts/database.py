@@ -12,9 +12,8 @@ class Database:
 		try:
 			self.engine = db.create_engine('postgresql+psycopg2://postgres:post259mzj!@pipeline-db-dev.coj14rnbchxk.us-east-2.rds.amazonaws.com:5432/pipeline_db_dev')
 			self.logger.log_info("Connection Established")
-		except Exception as e:
-			print(e) 
-			#self.logger.log_error(e)
+		except Exception as e: 
+			self.logger.log_error(e)
 
 	def insert_to_temp_table(self, table_name, data):
 		try:
