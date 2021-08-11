@@ -37,7 +37,6 @@ class Extractor:
 		request = requests.get(url)
 		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
 
-		print(df)
 		return df		
 
 	def pull_energy_transfer_flow_data(self,url, cycle):
