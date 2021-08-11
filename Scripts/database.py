@@ -9,7 +9,7 @@ class Database:
 
 	def establish_connection(self):
 		try:
-			self.engine = db.create_engine('postgres+psycopg2://postgres:post259mzj!@pipeline-db-dev.coj14rnbchxk.us-east-2.rds.amazonaws.com/pipeline_db_dev')
+			self.engine = db.create_engine('postgres://postgres:post259mzj!@pipeline-db-dev.coj14rnbchxk.us-east-2.rds.amazonaws.com/pipeline_db_dev')
 			self.logger.log_info("Connection Established")
 		except Exception as e: 
 			self.logger.log_error(e)

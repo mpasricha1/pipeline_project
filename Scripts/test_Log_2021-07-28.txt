@@ -1,0 +1,4 @@
+INFO:root:2021-07-28-21:4648 :: Connection Established
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): tgcmessenger.energytransfer.com:443
+DEBUG:urllib3.connectionpool:https://tgcmessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=TGC&gasDay=07%2F19%2F2021&cycleDesc=Intraday%202&pointCd=&name= HTTP/1.1" 200 None
+INFO:root:2021-07-28-21:4700 :: 204 rows inserted to temp table
