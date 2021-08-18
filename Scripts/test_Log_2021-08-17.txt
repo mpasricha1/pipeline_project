@@ -1,0 +1,18 @@
+INFO:root:2021-08-17-20:0429 :: Connection Established
+INFO:root:2021-08-17-20:0514 :: Connection Established
+INFO:root:2021-08-17-20:0606 :: Connection Established
+INFO:root:2021-08-17-20:0738 :: Connection Established
+INFO:root:2021-08-17-20:1103 :: Connection Established
+INFO:root:2021-08-17-20:1208 :: Connection Established
+INFO:root:2021-08-17-20:1331 :: Connection Established
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): peplmessenger.energytransfer.com:443
+DEBUG:urllib3.connectionpool:https://peplmessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=%7B%7D&cycleDesc=%7B%7D&pointCd=&name= HTTP/1.1" 500 None
+INFO:root:2021-08-17-20:1455 :: Connection Established
+INFO:root:2021-08-17-20:1512 :: Connection Established
+INFO:root:2021-08-17-20:1601 :: Connection Established
+INFO:root:2021-08-17-20:1623 :: Connection Established
+INFO:root:2021-08-17-20:1633 :: Connection Established
+ERROR:root:2021-08-17-20:1633 :: 'NoneType' object has no attribute 'to_sql'
+INFO:root:2021-08-17-20:1813 :: Connection Established
+INFO:root:2021-08-17-20:1828 :: Connection Established
+INFO:root:2021-08-17-20:1929 :: Connection Established

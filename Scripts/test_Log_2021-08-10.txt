@@ -17,3 +17,15 @@ INFO:root:2021-08-10-20:3311 :: Connection Established
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): peplmessenger.energytransfer.com:443
 DEBUG:urllib3.connectionpool:https://peplmessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=08%2F10%2F2021&cycleDesc=Evening&pointCd=&name= HTTP/1.1" 200 None
 INFO:root:2021-08-10-20:3326 :: 300 rows inserted to temp table
+INFO:root:2021-08-10-21:0745 :: Connection Established
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): peplmessenger.energytransfer.com:443
+DEBUG:urllib3.connectionpool:https://peplmessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=08%2F11%2F2021&cycleDesc=Intraday%201&pointCd=&name= HTTP/1.1" 200 None
+INFO:root:2021-08-10-21:0805 :: 300 rows inserted to temp table
+INFO:root:2021-08-10-21:1919 :: Connection Established
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): peplmessenger.energytransfer.com:443
+DEBUG:urllib3.connectionpool:https://peplmessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=08%2F11%2F2021&cycleDesc=Intraday%201&pointCd=&name= HTTP/1.1" 200 None
+INFO:root:2021-08-10-21:1933 :: 300 rows inserted to temp table
+INFO:root:2021-08-10-21:3613 :: Connection Established
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): peplmessenger.energytransfer.com:443
+DEBUG:urllib3.connectionpool:https://peplmessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=08%2F11%2F2021&cycleDesc=Intraday%201&pointCd=&name= HTTP/1.1" 200 None
+INFO:root:2021-08-10-21:3628 :: 300 rows inserted to temp table
