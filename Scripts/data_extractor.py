@@ -43,8 +43,9 @@ class Extractor:
 		final_url = url.format(self.generate_date_for_url(cycle),cycle)
 		print(final_url)
 
-		# request = requests.get(final_url)
-		# df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
+		request = requests.get(final_url)
+		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
+		print(df)
 
 		# df["Cycle_Desc"] = self.generate_cycle_count(url["tsp"],file)
 		# df["Eff_Gas_Day"] = datetime.today() - timedelta(days=1)
@@ -56,11 +57,11 @@ class Extractor:
 		# 	df["Total_Scheduled_Quantity"] = df["TSQ (Rec)"] + df["TSQ (Del)"]
 
 		# print(df)
-		# master_df = master_df.append(df)
+		master_df = master_df.append(df)
 			
 		# # print(master_df)
 		# master_df.to_csv("final.csv")
-		# return master_df
+		return master_df
 
 	def pull_flow_data(self):
 		# Specter

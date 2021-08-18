@@ -17,7 +17,7 @@ class Database:
 
 	def insert_to_temp_table(self, table_name, data):
 		try:
-			data.to_sql(table_name, self.engine, if_exists='replace', chunksize=None)
+			data.to_sql(table_name, self.engine, if_exists='append', chunksize=None)
 		except Exception as e:
 			self.logger.log_error(e)
 		finally:
