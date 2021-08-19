@@ -25,9 +25,9 @@ db = Database()
 db.establish_connection()
 
 for url in urls: 
-data = scraper.pull_energy_transfer_flow_data(url, args[0])
-db.truncate_table(f'temp_flow_{args[0]}')
-db.insert_to_temp_table(f'temp_flow_{args[0]}', data)
+	data = scraper.pull_energy_transfer_flow_data(url, args[0])
+	db.truncate_table(f'temp_flow_{args[0]}')
+	db.insert_to_temp_table(f'temp_flow_{args[0]}', data)
 
 
 
