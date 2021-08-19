@@ -20,15 +20,15 @@ urls = [
 logger = Logger()
 logger.create_logs("test")
 
-scraper = Extractor(datetime.now())
+scraper = Extractor()
 db = Database()
 db.establish_connection()
 
-for url in urls: 
-	data = scraper.pull_energy_transfer_flow_data(url, args[0])
-	db.insert_to_temp_table(f'temp_flow_{args[0]}', data)
+# for url in urls: 
+# 	data = scraper.pull_energy_transfer_flow_data(url, args[0])
+# 	db.insert_to_temp_table(f'temp_flow_{args[0]}', data)
 
 
 
-# data = scraper.pull_energy_transfer_flow_data(urls[0], args[0])
-# db.insert_to_temp_table(f'temp_flow', data)
+data = scraper.pull_energy_transfer_flow_data(urls[0], args[0])
+db.insert_to_temp_table('temp_flow', data)

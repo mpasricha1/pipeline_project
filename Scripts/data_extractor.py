@@ -11,21 +11,16 @@ import time
 # https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=01%2F15%2F2021&cycleDesc=Intraday%202&pointCd=&name=
 # https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=01%2F16%2F2021&cycleDesc=Timely&pointCd=&name=
 class Extractor:
-	def __init__(self, date):
-		self.date = date
-
-	def get_date():
-		return this.date 
-
-	def generate_date_for_url(self, cycle):
+	def generate_date(self, cycle):
 		if cycle == 'final' or cycle == 'timely' or  cycle =='evening':
 			date = datetime.today() - timedelta(days=1)
 		else:
 			date = datetime.today()
 
-		url_date = f"{date.month}%2F{date.day}%2F{date.year}"
+		return date
 
-		return url_date
+	def format_date_for_url(self, date):
+		return f"{date.month}%2F{date.day}%2F{date.year}"
 		
 	def generate_cycle_count(self,tsp, cycle):
 		return f"{cycle}-{(datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')}-{tsp}"
@@ -36,11 +31,11 @@ class Extractor:
 
 		return df		
 
-	def pull_energy_transfer_flow_data(self,url, cycle):
-		
+	def pull_energy_transfer_flow_data(self,url, cycle):		
 		master_df = pd.DataFrame()
 
-		final_url = url.format(self.generate_date_for_url(cycle),cycle)
+		date = self.generate_date(cycle)
+		final_url = url.format(self.format_date_for_url(date),cycle)
 		print(final_url)
 
 		request = requests.get(final_url)
@@ -58,6 +53,7 @@ class Extractor:
 		# print(df)
 		master_df = master_df.append(df)
 		master_df['Cycle'] = cycle
+		master_df['Date'] = date
 		print(master_df)
 			
 		# # print(master_df)
