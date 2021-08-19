@@ -15,6 +15,14 @@ class Database:
 		except Exception as e: 
 			self.logger.log_error(e)
 
+	def truncate_table(self,table): 
+		try:
+			with self.engine.begin() as conn:
+				conn.execute(f'Truncate table {table}')
+		except Exception as e: 
+			self.logger.log_error(e)
+			print(e)
+
 	def insert_to_temp_table(self, table_name, data):
 		try:
 			data.to_sql(table_name, self.engine, if_exists='append', chunksize=None)
