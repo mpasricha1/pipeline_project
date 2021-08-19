@@ -45,7 +45,6 @@ class Extractor:
 
 		request = requests.get(final_url)
 		df = pd.DataFrame(pd.read_csv(io.StringIO(request.content.decode("utf-8"))))
-		print(df)
 
 		# df["Cycle_Desc"] = self.generate_cycle_count(url["tsp"],file)
 		# df["Eff_Gas_Day"] = datetime.today() - timedelta(days=1)
@@ -58,6 +57,8 @@ class Extractor:
 
 		# print(df)
 		master_df = master_df.append(df)
+		master_df['Cycle'] = cycle
+		print(master_df)
 			
 		# # print(master_df)
 		# master_df.to_csv("final.csv")
