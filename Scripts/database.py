@@ -23,6 +23,14 @@ class Database:
 			self.logger.log_error(e)
 			print(e)
 
+	def exec_stp(self, stp_name):
+		try:
+			with self.engine.begin() as conn: 
+				conn.execute(f'Call public.{stp_name}')
+		except Exception as e: 
+			self.logger.log_error(e)
+			print(e)
+
 	def insert_to_temp_table(self, table_name, data):
 		try:
 			data.to_sql(table_name, self.engine, if_exists='append', chunksize=None)
