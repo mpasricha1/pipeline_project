@@ -1,0 +1,79 @@
+INFO:root:2021-08-24-20:2811 :: Connection Established
+INFO:root:2021-08-24-20:2828 :: Connection Established
+INFO:root:2021-08-24-20:2845 :: Connection Established
+INFO:root:2021-08-24-20:2853 :: Connection Established
+INFO:root:2021-08-24-20:2903 :: Connection Established
+INFO:root:2021-08-24-20:3949 :: Connection Established
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): peplmessenger.energytransfer.com:443
+DEBUG:urllib3.connectionpool:https://peplmessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=8%2F25%2F2021&cycleDesc=timely&pointCd=&name= HTTP/1.1" 200 None
+INFO:root:2021-08-24-20:4002 :: 300 rows inserted to temp table
+ERROR:root:2021-08-24-20:4002 :: (psycopg2.errors.SyntaxError) INSERT has more expressions than target columns
+LINE 2: ...TSQ", "Flow Ind", CURRENT_DATE, CURRENT_DATE, x."Cycle", '1'
+                                                                    ^
+QUERY:  insert into flow_readings(pipeline_location_id, loc_id, flow_date, tsq, flow_dir, created_at, updated_at, cycle_desc)
+select pl.id, pl.loc_id, x."Date", x."TSQ", "Flow Ind", CURRENT_DATE, CURRENT_DATE, x."Cycle", '1'
+from temp_flow_timely x
+INNER join pipeline_location pl ON pl.loc_id = x."Loc"
+INNER JOIN pipelines p ON p.id = pl.pipeline_id
+CONTEXT:  PL/pgSQL function stp_insertflowreadings_timely() line 3 at SQL statement
+
+[SQL: Call public.stp_insertflowreadings_timely()]
+(Background on this error at: http://sqlalche.me/e/f405)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): rovermessenger.energytransfer.com:443
+DEBUG:urllib3.connectionpool:https://rovermessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=ROVER&gasDay=8%2F25%2F2021&cycleDesc=timely&pointCd=&name= HTTP/1.1" 200 None
+INFO:root:2021-08-24-20:4006 :: 22 rows inserted to temp table
+ERROR:root:2021-08-24-20:4006 :: (psycopg2.errors.SyntaxError) INSERT has more expressions than target columns
+LINE 2: ...TSQ", "Flow Ind", CURRENT_DATE, CURRENT_DATE, x."Cycle", '1'
+                                                                    ^
+QUERY:  insert into flow_readings(pipeline_location_id, loc_id, flow_date, tsq, flow_dir, created_at, updated_at, cycle_desc)
+select pl.id, pl.loc_id, x."Date", x."TSQ", "Flow Ind", CURRENT_DATE, CURRENT_DATE, x."Cycle", '1'
+from temp_flow_timely x
+INNER join pipeline_location pl ON pl.loc_id = x."Loc"
+INNER JOIN pipelines p ON p.id = pl.pipeline_id
+CONTEXT:  PL/pgSQL function stp_insertflowreadings_timely() line 3 at SQL statement
+
+[SQL: Call public.stp_insertflowreadings_timely()]
+(Background on this error at: http://sqlalche.me/e/f405)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): sermessenger.energytransfer.com:443
+DEBUG:urllib3.connectionpool:https://sermessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=SER&gasDay=8%2F25%2F2021&cycleDesc=timely&pointCd=&name= HTTP/1.1" 200 None
+INFO:root:2021-08-24-20:4010 :: 72 rows inserted to temp table
+ERROR:root:2021-08-24-20:4011 :: (psycopg2.errors.SyntaxError) INSERT has more expressions than target columns
+LINE 2: ...TSQ", "Flow Ind", CURRENT_DATE, CURRENT_DATE, x."Cycle", '1'
+                                                                    ^
+QUERY:  insert into flow_readings(pipeline_location_id, loc_id, flow_date, tsq, flow_dir, created_at, updated_at, cycle_desc)
+select pl.id, pl.loc_id, x."Date", x."TSQ", "Flow Ind", CURRENT_DATE, CURRENT_DATE, x."Cycle", '1'
+from temp_flow_timely x
+INNER join pipeline_location pl ON pl.loc_id = x."Loc"
+INNER JOIN pipelines p ON p.id = pl.pipeline_id
+CONTEXT:  PL/pgSQL function stp_insertflowreadings_timely() line 3 at SQL statement
+
+[SQL: Call public.stp_insertflowreadings_timely()]
+(Background on this error at: http://sqlalche.me/e/f405)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): tgcmessenger.energytransfer.com:443
+DEBUG:urllib3.connectionpool:https://tgcmessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=TGC&gasDay=8%2F25%2F2021&cycleDesc=timely&pointCd=&name= HTTP/1.1" 200 None
+INFO:root:2021-08-24-20:4021 :: 204 rows inserted to temp table
+ERROR:root:2021-08-24-20:4021 :: (psycopg2.errors.SyntaxError) INSERT has more expressions than target columns
+LINE 2: ...TSQ", "Flow Ind", CURRENT_DATE, CURRENT_DATE, x."Cycle", '1'
+                                                                    ^
+QUERY:  insert into flow_readings(pipeline_location_id, loc_id, flow_date, tsq, flow_dir, created_at, updated_at, cycle_desc)
+select pl.id, pl.loc_id, x."Date", x."TSQ", "Flow Ind", CURRENT_DATE, CURRENT_DATE, x."Cycle", '1'
+from temp_flow_timely x
+INNER join pipeline_location pl ON pl.loc_id = x."Loc"
+INNER JOIN pipelines p ON p.id = pl.pipeline_id
+CONTEXT:  PL/pgSQL function stp_insertflowreadings_timely() line 3 at SQL statement
+
+[SQL: Call public.stp_insertflowreadings_timely()]
+(Background on this error at: http://sqlalche.me/e/f405)
+INFO:root:2021-08-24-20:4700 :: Connection Established
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): peplmessenger.energytransfer.com:443
+DEBUG:urllib3.connectionpool:https://peplmessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=8%2F25%2F2021&cycleDesc=timely&pointCd=&name= HTTP/1.1" 200 None
+INFO:root:2021-08-24-20:4716 :: 300 rows inserted to temp table
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): rovermessenger.energytransfer.com:443
+DEBUG:urllib3.connectionpool:https://rovermessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=ROVER&gasDay=8%2F25%2F2021&cycleDesc=timely&pointCd=&name= HTTP/1.1" 200 None
+INFO:root:2021-08-24-20:4719 :: 22 rows inserted to temp table
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): sermessenger.energytransfer.com:443
+DEBUG:urllib3.connectionpool:https://sermessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=SER&gasDay=8%2F25%2F2021&cycleDesc=timely&pointCd=&name= HTTP/1.1" 200 None
+INFO:root:2021-08-24-20:4723 :: 72 rows inserted to temp table
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): tgcmessenger.energytransfer.com:443
+DEBUG:urllib3.connectionpool:https://tgcmessenger.energytransfer.com:443 "GET /ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=TGC&gasDay=8%2F25%2F2021&cycleDesc=timely&pointCd=&name= HTTP/1.1" 200 None
+INFO:root:2021-08-24-20:4732 :: 204 rows inserted to temp table

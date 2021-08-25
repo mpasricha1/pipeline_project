@@ -12,8 +12,10 @@ import time
 # https://peplmessenger.energytransfer.com/ipost/capacity/operationally-available-by-location?f=csv&extension=csv&asset=PEPL&gasDay=01%2F16%2F2021&cycleDesc=Timely&pointCd=&name=
 class Extractor:
 	def generate_date(self, cycle):
-		if cycle == 'final' or cycle == 'timely' or  cycle =='evening':
+		if cycle == 'final':
 			date = datetime.today() - timedelta(days=1)
+		elif cycle == 'timely' or  cycle =='evening':
+			date = datetime.today() + timedelta(days=1)
 		else:
 			date = datetime.today()
 
