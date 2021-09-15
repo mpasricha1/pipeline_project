@@ -29,6 +29,7 @@ for url in urls:
 	db.truncate_table(f'temp_flow_{args[0]}')
 	db.insert_to_temp_table(f'temp_flow_{args[0]}', data)
 	db.exec_stp(f'stp_insertflowreadings_{args[0]}()')
+	db.exec_stp('stp_purge_non_finals()')
 
 
 
